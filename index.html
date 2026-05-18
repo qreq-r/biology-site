@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blood AI</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:linear-gradient(135deg,#0f172a,#1e293b);
+      color:white;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+    }
+
+    .warning{
+      position:absolute;
+      top:15px;
+      width:100%;
+      text-align:center;
+      font-size:12px;
+      color:#94a3b8;
+      padding:0 20px;
+    }
+
+    .card{
+      width:420px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(10px);
+      border-radius:25px;
+      padding:35px;
+      text-align:center;
+      box-shadow:0 0 40px rgba(0,0,0,0.3);
+    }
+
+    h1{
+      font-size:42px;
+      margin-bottom:10px;
+    }
+
+    .subtitle{
+      color:#94a3b8;
+      margin-bottom:30px;
+    }
+
+    button{
+      background:#2563eb;
+      color:white;
+      border:none;
+      padding:15px 25px;
+      border-radius:14px;
+      font-size:18px;
+      cursor:pointer;
+      transition:0.3s;
+      width:100%;
+      margin-top:10px;
+    }
+
+    button:hover{
+      background:#1d4ed8;
+      transform:scale(1.03);
+    }
+
+    .form{
+      display:none;
+      margin-top:25px;
+    }
+
+    input{
+      width:100%;
+      padding:14px;
+      margin-top:12px;
+      border:none;
+      border-radius:12px;
+      font-size:16px;
+      background:#0f172a;
+      color:white;
+      outline:none;
+    }
+
+    .result{
+      margin-top:20px;
+      padding:18px;
+      border-radius:15px;
+      background:#0f172a;
+      text-align:left;
+      line-height:1.6;
+      color:#38bdf8;
+    }
+
+    .footer{
+      margin-top:25px;
+      font-size:12px;
+      color:#64748b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="warning">
+    Сайт не является медицинским сервисом и не заменяет консультацию врача.
+    Все результаты носят исключительно информационный характер.
+  </div>
+
+  <div class="card">
+
+    <h1>Blood AI</h1>
+
+    <div class="subtitle">
+      Анализ показателей крови с помощью AI
+    </div>
+
+    <button onclick="openForm()">
+      Ввести данные
+    </button>
+
+    <div class="form" id="form">
+
+      <input type="number" id="hemoglobin" placeholder="Гемоглобин">
+
+      <input type="number" id="sugar" placeholder="Сахар">
+
+      <input type="number" id="pressure" placeholder="Давление">
+
+      <button onclick="analyze()">
+        Анализировать
+      </button>
+
+      <div class="result" id="result"></div>
+
+    </div>
+
+    <div class="footer">
+      Blood AI © 2026
+    </div>
+
+  </div>
+
+  <script>
+
+    function openForm(){
+      document.getElementById("form").style.display = "block";
+    }
+
+    function analyze(){
+
+      let hemoglobin = parseInt(document.getElementById("hemoglobin").value);
+      let sugar = parseFloat(document.getElementById("sugar").value);
+      let pressure = parseInt(document.getElementById("pressure").value);
+
+      let result = "";
+
+      if(hemoglobin < 120){
+        result += "• Низкий гемоглобин — возможна анемия.<br>";
+      }
+      else{
+        result += "• Гемоглобин в норме.<br>";
+      }
+
+      if(sugar > 6){
+        result += "• Повышенный сахар — риск диабета.<br>";
+      }
+      else{
+        result += "• Сахар в норме.<br>";
+      }
+
+      if(pressure > 140){
+        result += "• Повышенное давление.<br>";
+      }
+      else{
+        result += "• Давление в пределах нормы.<br>";
+      }
+
+      result += "<br><b>Рекомендуется консультация врача.</b>";
+
+      document.getElementById("result").innerHTML = result;
+    }
+
+  </script>
+
+</body>
+</html>
