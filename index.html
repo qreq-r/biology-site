@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blood AI</title>
+  <title>Blood Test</title>
 
   <style>
     *{
@@ -116,10 +116,10 @@
 
   <div class="card">
 
-    <h1>Blood AI</h1>
+    <h1>Blood Test</h1>
 
     <div class="subtitle">
-      Анализ показателей крови с помощью AI
+      Анализ показателей организма и рекомендации БАДов
     </div>
 
     <button onclick="openForm()">
@@ -128,11 +128,13 @@
 
     <div class="form" id="form">
 
-      <input type="number" id="hemoglobin" placeholder="Гемоглобин">
+      <input type="number" id="energy" placeholder="Уровень энергии (1-10)">
 
-      <input type="number" id="sugar" placeholder="Сахар">
+      <input type="number" id="sleep" placeholder="Часы сна">
 
-      <input type="number" id="pressure" placeholder="Давление">
+      <input type="number" id="water" placeholder="Вода в день (литры)">
+
+      <input type="number" id="vitaminD" placeholder="Витамин D">
 
       <button onclick="analyze()">
         Анализировать
@@ -143,7 +145,7 @@
     </div>
 
     <div class="footer">
-      Blood AI © 2026
+      Blood Test © 2026
     </div>
 
   </div>
@@ -156,34 +158,46 @@
 
     function analyze(){
 
-      let hemoglobin = parseInt(document.getElementById("hemoglobin").value);
-      let sugar = parseFloat(document.getElementById("sugar").value);
-      let pressure = parseInt(document.getElementById("pressure").value);
+      let energy = parseInt(document.getElementById("energy").value);
+      let sleep = parseInt(document.getElementById("sleep").value);
+      let water = parseFloat(document.getElementById("water").value);
+      let vitaminD = parseInt(document.getElementById("vitaminD").value);
 
       let result = "";
 
-      if(hemoglobin < 120){
-        result += "• Низкий гемоглобин — возможна анемия.<br>";
+      if(energy < 5){
+        result += "• Низкий уровень энергии.<br>";
+        result += "Рекомендуется: магний, витамин B12.<br><br>";
       }
       else{
-        result += "• Гемоглобин в норме.<br>";
+        result += "• Уровень энергии хороший.<br><br>";
       }
 
-      if(sugar > 6){
-        result += "• Повышенный сахар — риск диабета.<br>";
+      if(sleep < 7){
+        result += "• Недостаток сна.<br>";
+        result += "Рекомендуется: магний, мелатонин.<br><br>";
       }
       else{
-        result += "• Сахар в норме.<br>";
+        result += "• Сон в норме.<br><br>";
       }
 
-      if(pressure > 140){
-        result += "• Повышенное давление.<br>";
+      if(water < 2){
+        result += "• Недостаточное потребление воды.<br>";
+        result += "Рекомендуется увеличить потребление воды и электролитов.<br><br>";
       }
       else{
-        result += "• Давление в пределах нормы.<br>";
+        result += "• Водный баланс хороший.<br><br>";
       }
 
-      result += "<br><b>Рекомендуется консультация врача.</b>";
+      if(vitaminD < 30){
+        result += "• Низкий витамин D.<br>";
+        result += "Рекомендуется: витамин D3.<br><br>";
+      }
+      else{
+        result += "• Витамин D в норме.<br><br>";
+      }
+
+      result += "<b>Перед приемом БАДов рекомендуется консультация специалиста.</b>";
 
       document.getElementById("result").innerHTML = result;
     }
